@@ -3,15 +3,29 @@ spring:
     name: template-spring-cloud
   cloud:
     nacos:
+      server-addr: nacos-service.infrastructure.svc.cluster.local
+      username: ${NACOS_USERNAME}
+      password: ${NACOS_PASSWORD}
       config:
-        server-addr: nacos-service.infrastructure.svc.cluster.local
-        username: ${NACOS_USERNAME}
-        password: ${NACOS_PASSWORD}
+        enabled: true
         namespace: ${NACOS_NAMESPACE}
+        group: DEFAULT_GROUP
+        refresh-enabled: true
+      discovery:
+        enabled: true
+        register-enabled: true
+        namespace: ${NACOS_NAMESPACE}
+        group: DEFAULT_GROUP
 
   config:
     import:
-      - nacos:template-spring-cloud-config.yaml?group=BASE&refreshEnabled=true
+      - nacos:${spring.application.name}-config.yaml
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://${MYSQL_HOST}/mall?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
 
 management:
   endpoint:

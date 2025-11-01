@@ -23,15 +23,9 @@ rm ./rename-project.sh
 
 - 包括项目的依赖、版本号以及描述信息等.
 
-### 4. 在Github中添加 Repository secrets:
-
-- `DOCKER_USERNAME`
-- `DOCKER_ACCESS_TOKEN`
-  
-### 5. 在Nacos中添加项目配置
+### 4. 在Nacos中添加项目配置
 
 - 配置 ***DataId*** 为`<new-project-name>-config.yaml`
-- 配置的 ***group*** 为`BASE`
 
 
 ----------------------------删除以上内容，并按需修改如下README.md-----------------------------
@@ -61,6 +55,8 @@ rm ./rename-project.sh
 
 - JDK 17+
 - Docker
+
+### 配置必要的环境变量
 
 ### 本地启动
 
